@@ -1,0 +1,22 @@
+---
+# Install python
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: check for python2
+      stat:
+        path: /usr/bin/python
+      ignore_errors: yes
+      register: systempython2
+    - name: install python2 for Debian based systems
+      raw: apt-get update; apt-get -y install python-simplejson
+      ignore_errors: yes
+      when: systempython2|failed or systempython2.stat.exists is undefined or systempython2.stat.exists == false
+    - name: install python2 for RHEL based systems
+      raw: yum -y install python
+      ignore_errors: yes
+      when: systempython2|failed or systempython2.stat.exists is undefined or systempython2.stat.exists == false
+  tags:
+    - install_python
+    - pre_config_server
