@@ -3,6 +3,7 @@
 - hosts: all
   become: yes
   gather_facts: no
+  any_errors_fatal: true
   tasks:
     - name: check for python2
       stat:
