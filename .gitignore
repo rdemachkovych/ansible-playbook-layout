@@ -1,0 +1,23 @@
+##
+# Vim
+##
+# swap
+[._]*.sw[a-z]
+[._]sw[a-z]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+
+##
+#Other
+##
+.vagrant/
+*.log
+*.idea
+.cache
+**__pycache__**
+*.retry
